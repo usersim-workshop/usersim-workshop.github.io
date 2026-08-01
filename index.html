@@ -8,7 +8,7 @@
 <meta name="robots" content="noindex, nofollow">
 
 <title>UserSim @ NeurIPS 2026 &middot; Grounded User Simulation for Model Evaluation and Training</title>
-<meta name="description" content="A NeurIPS 2026 workshop in Paris on making simulated users diverse, faithful, and trustworthy for the evaluation and training of AI systems.">
+<meta name="description" content="A NeurIPS 2026 workshop in Paris on when simulated users can be trusted for AI evaluation and training—and the shared evidence, standards, and tools the field needs.">
 <link rel="canonical" href="https://usersim-workshop.org/">
 
 <meta property="og:type" content="website">
@@ -101,6 +101,17 @@
   </div>
 </section>
 
+<!-- ========================================================== MISSION -->
+<section id="mission" class="section-tint">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">The mission</p>
+      <h2>Make user simulation a capability the field can trust</h2>
+      <p class="prose lede-muted">Help establish the evidence, standards, and open tools needed to make user simulation diverse, faithful, and trustworthy.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ============================================================ ABOUT -->
 <section id="about">
   <div class="wrap">
@@ -111,11 +122,12 @@
     <div class="prose reveal">
       <p>User simulation has quietly become infrastructure. Simulated users now stand in for real ones across agentic evaluation, conversational search, dialogue systems and recommenders, and they have moved into training pipelines at frontier labs as sources of synthetic interaction data, preference and process-reward signal, and as reinforcement learning environments in their own right.</p>
       <p>That makes the simulator a measurement instrument, and measurement instruments need calibration. Recent work finds that <strong>measured agent success can move by as much as nine points depending only on which model plays the user</strong>, that overly cooperative simulators inflate performance, and that simulators are miscalibrated for speakers of dialects including African American Vernacular English and Indian English.</p>
+      <p>The opportunity is just as consequential. Well-grounded simulation can make interactive evaluation reproducible, cover rare and long-tail behavior, and extend evaluation to multilingual and sovereign-AI systems with little in-language production traffic. Population-scale grounding is becoming feasible just as agent training and evaluation are becoming more dependent on simulated interaction. The field needs shared evidence and reporting norms now, before weak assumptions harden into standard practice.</p>
       <p>This workshop brings together the communities building and stress-testing these simulators around a single object, the simulated user itself, and one question: <strong>when can we trust it?</strong></p>
     </div>
     <figure class="figure reveal">
       <canvas data-bloom data-aspect="2.7"></canvas>
-      <figcaption>The Sim2Real gap: a real user and a simulated one, given the same opening turn, drifting apart as the conversation goes on.</figcaption>
+      <figcaption>The simulation-to-reality (Sim2Real) gap: a real user and a simulated one, given the same opening turn, drifting apart as the conversation goes on.</figcaption>
     </figure>
   </div>
 </section>
@@ -125,7 +137,7 @@
   <div class="wrap">
     <div class="section-head">
       <p class="eyebrow">Who it&rsquo;s for</p>
-      <h2>Six communities, one question</h2>
+      <h2>Across communities, one question</h2>
       <p class="prose lede-muted">User simulation has advanced in parallel across fields that rarely meet, under different names and with no shared standards. We are convening them around the same object.</p>
     </div>
     <ul class="communities reveal">
@@ -134,9 +146,11 @@
       <li>Dialogue and task-oriented systems</li>
       <li>HCI and social simulation</li>
       <li>Reinforcement learning and recommender systems</li>
-      <li>Synthetic data, multilingual NLP and evaluation methodology</li>
+      <li>Synthetic data and model training</li>
+      <li>Multilingual and lower-resource NLP</li>
+      <li>Fairness, responsible AI and evaluation methodology</li>
     </ul>
-    <p class="prose reveal call-out"><strong>If you build simulators, or you are skeptical of them, this workshop is for you.</strong> Work that stress-tests simulation is as welcome as work that advances it, and negative results are explicitly in scope.</p>
+    <p class="prose reveal call-out"><strong>If you build simulators, validate or audit them, or use them to train and evaluate models, this workshop is for you.</strong> Work that stress-tests simulation is as welcome as work that advances it. Negative results, replications, and evidence that a simulator fails to transfer are first-class contributions.</p>
 
     <ul class="diff-list reveal">
       <li><strong>The first dedicated NeurIPS venue for user simulation.</strong> Unlike broader agent and environment workshops, this one centers the simulated user itself: persona fidelity, Sim2Real gaps, fairness, and representativeness.</li>
@@ -204,6 +218,7 @@
     </div>
     <div>
       <p>A moderated debate sits at the heart of the program, pairing the people building simulators with the people stress-testing them. We are deliberately seating builders opposite skeptics so the day produces shared standards rather than shared enthusiasm.</p>
+      <p>The goal is not a yes-or-no verdict. It is a practical account of which claims simulation can support, what validation those claims require, and which failure modes every evaluation should disclose.</p>
       <p class="debate-note">Panelists are being confirmed and will be announced here.</p>
     </div>
   </div>
@@ -220,8 +235,8 @@
 
     <ul class="artifact-list reveal">
       <li class="artifact">
-        <h3>A baseline user simulator</h3>
-        <p>An open, census-conditioned reference simulator to build on, extend or argue with, released with its persona and configuration scripts.</p>
+        <h3>A pilot baseline user simulator</h3>
+        <p>An open, census-conditioned baseline to build on, extend or argue with, released with its persona and configuration scripts.</p>
       </li>
       <li class="artifact">
         <h3>A simulator reporting standard</h3>
@@ -233,7 +248,7 @@
       </li>
       <li class="artifact">
         <h3>A community calibration exercise</h3>
-        <p>A non-competitive first-year exercise over scenarios drawn from the <a href="https://trec.usersim.ai/guidelines">TREC 2026 User Simulation Track</a> and the <a href="https://arxiv.org/abs/2506.07982">&tau;-bench family</a>, with a fairness and representativeness lens.</p>
+        <p>A non-competitive first-year exercise over selected scenarios we will release from the <a href="https://trec.usersim.ai/guidelines">TREC 2026 User Simulation Track</a> and the <a href="https://arxiv.org/abs/2506.07982">&tau;-bench family</a>, with a fairness and representativeness lens. Bring any simulator: the aim is shared calibration, not a winner.</p>
       </li>
       <li class="artifact">
         <h3>A community report</h3>
@@ -241,7 +256,7 @@
       </li>
     </ul>
 
-    <p class="prose neutrality reveal">The exercise is open to any simulator, and the catalog covers work from across the field, including SOTOPIA, UserBench and ConvApparel, not only the benchmarks the organizers happen to have built.</p>
+    <p class="prose neutrality reveal">The exercise is open to any simulator, and the catalog covers work from across the field, including SOTOPIA, UserBench and ConvApparel, not only the benchmarks the organizers happen to have built. Participation details will be announced with the scenarios. A future edition may expand this foundation into a competitive leaderboard; Year 1 is about agreeing on the evidence a trustworthy simulator should report.</p>
   </div>
 </section>
 
@@ -250,18 +265,19 @@
   <div class="wrap">
     <div class="section-head">
       <p class="eyebrow">Call for papers</p>
-      <h2>Submit</h2>
+      <h2>Bring your evidence, methods, and hard questions</h2>
+      <p class="prose lede-muted">We welcome empirical studies, benchmark proposals, negative results, replications, tools and demos, position papers, and methodological reports. Whether you are building a simulator or testing where one breaks, we want work that helps the community reason more rigorously about simulated users.</p>
     </div>
 
     <div class="prose draft-note">
-      <strong>Draft.</strong> This call is under review by the organizing committee and will be finalized shortly. Dates and submission requirements are settled; topic wording may still change.
+      <strong>Draft.</strong> This call is under review by the organizing committee and will be finalized shortly.
     </div>
 
     <ul class="why-submit reveal">
-      <li><strong>Non-archival</strong><span>Keep your rights and publish the work properly later.</span></li>
-      <li><strong>A guaranteed poster</strong><span>Every accepted paper gets one; selected papers get spotlights.</span></li>
-      <li><strong>A cross-community room</strong><span>Readers who would never see it at your usual venue.</span></li>
-      <li><strong>Shared artifacts</strong><span>A baseline simulator, a reporting standard and a benchmark catalog to use.</span></li>
+      <li><strong>Non-archival</strong><span>Keep your rights and submit an archival version later.</span></li>
+      <li><strong>Present your work</strong><span>Accepted papers with an in-person presenter receive a poster slot; selected papers receive spotlights.</span></li>
+      <li><strong>Reach across fields</strong><span>Get feedback from researchers who may never encounter the work at its usual venue.</span></li>
+      <li><strong>Shape shared practice</strong><span>Help refine the reporting standard, failure taxonomy, and benchmark catalog.</span></li>
     </ul>
 
     <dl class="spec reveal">
@@ -275,7 +291,7 @@
 
     <div class="btn-row" style="margin-bottom:3rem">
       <!-- Replace with a real <a href="..."> once the OpenReview venue exists. -->
-      <span class="btn btn-primary" aria-disabled="true">Submit on OpenReview (opening shortly)</span>
+      <span class="btn btn-primary" aria-disabled="true">Submit by 29 August (OpenReview opening shortly)</span>
     </div>
 
     <h3 class="topics-head">Topics</h3>
@@ -320,6 +336,20 @@
         <li>Agentic and tool-use user simulation; interactive and trajectory-level evaluation</li>
         <li>Shared terminology and problem taxonomies that transfer across communities</li>
       </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================= RESPONSIBLE USE -->
+<section id="responsible-use">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Responsible use</p>
+      <h2>Simulation can reduce harm—or hide it</h2>
+    </div>
+    <div class="prose reveal">
+      <p>User simulation can support privacy-preserving evaluation, scalable safety testing, and disaggregated fairness analysis without repeatedly exposing real people to risk. But simulators can also inherit bias, reward systems for exploiting their quirks, or create an &ldquo;easy mode&rdquo; that masks failures real users would encounter.</p>
+      <p>That tension is central to the workshop. We are interested not only in stronger simulators, but in validation and reporting practices that make the limits of simulation visible.</p>
     </div>
   </div>
 </section>
@@ -373,7 +403,7 @@
       <h2>Invited speakers</h2>
     </div>
     <div class="tba reveal">
-      <p>Invited speakers and debate panelists are being confirmed and will be announced here shortly.</p>
+      <p>Invited speakers and debate panelists are being confirmed across pluralistic alignment, validity and fairness, grounded social simulation, reinforcement learning, recommender systems, and simulator-based training. Names and talk titles will be announced here shortly.</p>
     </div>
   </div>
 </section>
@@ -387,7 +417,7 @@
     </div>
     <div class="tba reveal">
       <p>A single full day, provisionally 08:00&ndash;17:00. The program combines a keynote and invited talks, contributed spotlights, two poster sessions, the <a href="#debate">moderated debate</a>, and a closing cross-community breakout to consolidate the reporting standard and benchmark catalog.</p>
-      <p>The detailed schedule will be published once speakers are confirmed.</p>
+      <p>The detailed schedule will be published once speakers are confirmed. Every session is designed to move from evidence to action: what works, where simulation fails, and what the community should report next.</p>
     </div>
   </div>
 </section>
@@ -471,7 +501,7 @@
   <div class="wrap">
     <p class="eyebrow">Contact</p>
     <h2>Get in touch</h2>
-    <p>Questions about the call, the shared artifacts, or reviewing: <a href="mailto:contact@usersim-workshop.org">contact@usersim-workshop.org</a></p>
+    <p>Questions about submitting, joining the calibration exercise, contributing to the shared artifacts, or volunteering to review: <a href="mailto:contact@usersim-workshop.org">contact@usersim-workshop.org</a></p>
   </div>
 </section>
 
