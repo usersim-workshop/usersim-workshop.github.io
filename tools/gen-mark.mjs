@@ -35,7 +35,7 @@ function build({ cx, cy, R, step, w, dotR, bg }) {
   for (let i = 0; i < G.SPHERE.length; i += step) {
     const v = view(unit(G.SPHERE[i][0], G.SPHERE[i][1]), VIEW_LON, VIEW_TILT);
     // Cull only the very edge of the limb, where points bead into a ring that
-    // fights the outline circle. This threshold is measured from the centre of
+    // fights the outline circle. This threshold is measured from the center of
     // the disc, so it bites at the top and bottom as well as the sides: at 0.28
     // it was deleting everything above 73N and below 73S, which clipped
     // northern Europe and removed Antarctica entirely, leaving dead space under
