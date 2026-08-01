@@ -1,109 +1,123 @@
-# UserSim @ NeurIPS 2026 — workshop website
+# UserSim @ NeurIPS 2026
 
-Source for <https://usersim-workshop.org> (also served at
-<https://usersim-workshop.github.io>).
+Website for **Grounded User Simulation for Model Evaluation and Training:
+Diversity, Fidelity, and Validity**, a workshop at NeurIPS 2026 in Paris,
+12–13 December 2026.
 
-Plain static HTML and CSS. There is no build step: whatever is committed to
-`main` is what gets served, usually within a minute or two.
+Live at <https://usersim-workshop.org>.
 
-## Editing
+## Running it locally
 
-Everything you are likely to change lives in [`index.html`](index.html), which is
-divided into clearly commented sections — hero, key dates, about, pillars,
-artifacts, call for papers, FAQ, speakers, program, organizers, contact.
-
-To make a small change without cloning anything, open `index.html` on GitHub,
-press `.` (or use the pencil icon), edit, and commit to `main`.
-
-To work locally:
+Plain static HTML, CSS and vanilla JavaScript. No build step, no dependencies,
+no framework. Whatever is on `main` is what gets served.
 
 ```bash
 git clone https://github.com/usersim-workshop/usersim-workshop.github.io.git
 cd usersim-workshop.github.io
-python3 -m http.server 8000   # then open http://localhost:8000
+python3 -m http.server 8000
 ```
 
-## Before publicising the site
+Then open <http://localhost:8000>.
 
-Two things are deliberately unfinished while the draft is under review:
+## Layout
 
-1. **Remove the `noindex` tag.** In `index.html`, delete the
-   `<meta name="robots" content="noindex, nofollow">` line. Until then, search
-   engines will not index the site.
-2. **Enable the OpenReview link.** The submit button in the call for papers is
-   an inert `<span>` reading "opening shortly". Swap it for a real `<a>` once the
-   submission site exists, and update the "Submission site" row in the spec list.
-
-Also worth doing as soon as people reply: **swap the monogram avatars for real
-headshots.** Each organizer currently has a `<span class="avatar">` with their
-initials. Replace it with `<img class="avatar" src="assets/people/xx.jpg" alt="">`
-— the sizing, shape and cropping are already handled in CSS. Ask each organizer
-for a photo rather than taking one from their institutional page or LinkedIn,
-which is both a copyright and a consent question.
-
-## Social card
-
-`assets/og-image.png` (1200x630) is generated from `og-image.svg`, which lives
-with the other generation scripts in the workshop scratch repo under
-`.geobuild/` rather than here, since it is 700KB of source the site never
-serves. To regenerate:
-
-```bash
-npx --yes @resvg/resvg-js-cli \
-  --font-serif-family "Georgia" --font-sans-serif-family "Helvetica" \
-  .geobuild/og-image.svg assets/og-image.png
+```
+index.html      the entire page, in commented sections
+styles.css      design tokens at the top, then components in page order
+graphics.js     three canvas figures
+geo-data.js     land geometry for the globe (generated)
+assets/         mark, favicon and social card
+tools/          scripts that regenerate the generated assets
 ```
 
-Keep the SVG pure ASCII and use numeric entities such as `&#8211;` for dashes.
-Stray UTF-8 in the source will make the renderer fail.
+To change copy, edit [`index.html`](index.html). Its sections are commented and
+appear in the order they render: hero, key dates, about, who it's for, pillars,
+debate, artifacts, call for papers, FAQ, speakers, program, organizers, contact.
+Small edits can be made from GitHub's web editor without cloning.
 
 ## Graphics
 
-Three canvas pieces live in [`graphics.js`](graphics.js): the hero globe, a
-turn-by-turn divergence figure in the problem section, and a population
-sampling figure in the pillars section. All three honour
-`prefers-reduced-motion` by settling on a representative static frame.
+Three canvas figures live in [`graphics.js`](graphics.js): the hero globe, a
+turn-by-turn divergence figure in the problem section, and a population sampling
+figure in the pillars section. All three honor `prefers-reduced-motion` by
+settling on a representative static frame.
 
 The globe is drawn from [`geo-data.js`](geo-data.js), an equal-area cloud of
-13,215 land points sampled from Natural Earth (public domain) and projected
-orthographically at runtime. As Africa rotates through the center, the land
-dots that fall inside the letterforms turn orange and spell USER SIM. The
-lettering uses a 5x7 bitmap face rather than a real font, because at this dot
-spacing a rasterised font's strokes catch roughly one dot each and read as
-speckle rather than letters.
-
-If you need to regenerate or re-densify the point cloud, the scripts are in the
-workshop scratch repo under `.geobuild/`.
+13,215 land points sampled from [Natural Earth](https://www.naturalearthdata.com/)
+and projected orthographically at runtime. As Africa rotates through the center,
+the land dots falling inside the letterforms turn orange and spell USER SIM. The
+lettering uses a 5x7 bitmap face rather than a real font: at this dot spacing a
+rasterized font's strokes catch roughly one dot each and read as speckle.
 
 ## Design conventions
 
-The palette is semantic rather than decorative:
+**The palette is semantic, not decorative.** `--human` (warm) always means real
+people or real behavior; `--sim` (cool) always means simulated. Every graphic
+uses that pairing, including the hero motif and the pillar marks. Please keep it
+consistent when adding diagrams.
 
-- `--human` (warm) always means real people or real behavior
-- `--sim` (cool) always means simulated
+**Type uses a system font stack**, so the site makes no third-party requests.
+If self-hosted `woff2` faces are added, only `--font-display` and `--font-body`
+in [`styles.css`](styles.css) need to change.
 
-Every graphic uses that pairing, including the hero motif and the pillar marks.
-Please keep it consistent when adding diagrams.
+**Do not put `.prose` on the same element as `.wrap`.** They have equal
+specificity, so the later declaration silently overrides the container width.
 
-Type currently uses a system font stack so the site makes zero third-party
-requests, which also keeps it clean under EU privacy rules. If self-hosted
-`woff2` faces are added later, only `--font-display` and `--font-body` in
-[`styles.css`](styles.css) need to change.
+## Regenerating assets
 
-The brand mark in `assets/mark.svg` and `assets/favicon.svg` is generated from
-the same Natural Earth points as the hero: Africa and Europe, sampled and drawn
-at a radius where the dots merge into solid continents. Points within about 0.16 of the limb are culled, otherwise they bead into a
-ring that fights the outline. Note that the threshold is measured from the
-centre of the disc, so it bites at the top and bottom as well as the sides:
-too high a value silently deletes the polar regions.
+The scripts in [`tools/`](tools) reproduce everything under `assets/` and
+`geo-data.js`. They need Node and a one-off install:
 
-The mark is drawn with the camera raised 18 degrees north, which keeps the host
-dot clear of the rim and brings Greenland and the British Isles into view. The
-hero globe is deliberately untilted; this applies only to the mark.
+```bash
+cd tools
+npm install world-atlas@2 topojson-client@3 d3-geo@3
+```
 
-The warm dot marks the host city. It is Paris for this edition; to move it for a
-future one, change `HOST` at the top of `.geobuild/mark-files.mjs` and
-regenerate. The script throws if the city would fall on the far side of the
-globe at the current camera longitude.
+**Land geometry** (slow; only needed if you change the sampling density):
 
-`.nojekyll` stops GitHub Pages from running the files through Jekyll.
+```bash
+node gen-geo-base.mjs > ../geo-data.js   # base pass
+node gen-geo-densify.mjs                 # ~2 min, raises the point count
+node gen-geo-outline.mjs                 # swaps in a lighter coastline outline
+```
+
+**Brand mark and favicon:**
+
+```bash
+node gen-mark.mjs
+```
+
+The warm dot marks the host city. To move it for a future edition, change `HOST`
+at the top of `gen-mark.mjs` and rerun; the script fails loudly if the city would
+fall on the far side of the globe at the current camera longitude, in which case
+`VIEW_LON` needs adjusting too.
+
+Two things about the mark that are easy to get wrong. Points within about 0.16
+of the limb are culled, because otherwise they bead into a ring that fights the
+outline circle — but that threshold is measured from the center of the disc, so
+it bites at the top and bottom as well as the sides, and too high a value
+silently deletes the polar regions. And the mark is drawn with the camera raised
+18 degrees north, which keeps the host dot clear of the rim and brings Greenland
+and the British Isles into view; the hero globe is deliberately untilted.
+
+**Social card** (1200×630, generated in two steps):
+
+```bash
+node gen-og-card.mjs
+npx --yes @resvg/resvg-js-cli \
+  --font-serif-family "Georgia" --font-sans-serif-family "Helvetica" \
+  ../assets/og-image.svg ../assets/og-image.png
+```
+
+Keep that SVG pure ASCII and use numeric entities such as `&#8211;` for dashes;
+stray UTF-8 makes the renderer fail.
+
+## Credits and licensing
+
+Coastline geometry is from [Natural Earth](https://www.naturalearthdata.com/),
+which is in the public domain.
+
+Site content is © the workshop organizers. The code is available for reuse; if
+you are building a workshop site and find any of it useful, please help yourself.
+
+`.nojekyll` stops GitHub Pages from running these files through Jekyll.
