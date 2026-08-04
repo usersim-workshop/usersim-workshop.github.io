@@ -1,5 +1,5 @@
 /* ==========================================================================
-   UserSim @ NeurIPS 2026 — canvas graphics
+   UserSim @ NeurIPS 2026: canvas graphics
 
    Three pieces:
      [data-globe]  the hero. A rotating Earth drawn from Natural Earth land

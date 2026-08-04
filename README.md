@@ -2,9 +2,9 @@
 
 Website for **Grounded User Simulation for Model Evaluation and Training:
 Diversity, Fidelity, and Validity**, a workshop at NeurIPS 2026 in Paris,
-12–13 December 2026.
+on December 12 or 13, 2026 (exact day to be confirmed).
 
-Live at <https://usersim-workshop.org>.
+Live at <https://usersim-workshop.github.io>.
 
 ## Running it locally
 
@@ -31,8 +31,9 @@ tools/          scripts that regenerate the generated assets
 ```
 
 To change copy, edit [`index.html`](index.html). Its sections are commented and
-appear in the order they render: hero, key dates, about, who it's for, pillars,
-debate, artifacts, call for papers, FAQ, speakers, program, organizers, contact.
+appear in the order they render: hero, key dates, mission, why now, who it's
+for, pillars, debate, artifacts, call for papers, responsible use, FAQ,
+speakers, program, organizers, contact.
 Small edits can be made from GitHub's web editor without cloning.
 
 ## Graphics
@@ -94,7 +95,7 @@ fall on the far side of the globe at the current camera longitude, in which case
 
 Two things about the mark that are easy to get wrong. Points within about 0.16
 of the limb are culled, because otherwise they bead into a ring that fights the
-outline circle — but that threshold is measured from the center of the disc, so
+outline circle, but that threshold is measured from the center of the disc, so
 it bites at the top and bottom as well as the sides, and too high a value
 silently deletes the polar regions. And the mark is drawn with the camera raised
 18 degrees north, which keeps the host dot clear of the rim and brings Greenland
