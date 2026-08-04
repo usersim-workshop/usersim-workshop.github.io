@@ -8,7 +8,7 @@ let dots="";
 const d=Math.max(1.05,R/78);
 for(const [lo,la] of G.SPHERE){const v=view(unit(lo,la),L); if(v[2]<=0) continue;
   dots+=`<rect x="${(cx+R*v[0]-d/2).toFixed(1)}" y="${(cy-R*v[1]-d/2).toFixed(1)}" width="${d.toFixed(1)}" height="${d.toFixed(1)}" fill="#96a8c4" fill-opacity="${(0.3+0.62*v[2]).toFixed(2)}"/>`;}
-// a few live populations with ripples
+// a few highlighted locations with ripples
 let marks="";
 const picks=[[ -3.0,8.0],[37.9,0.2],[2.2,46.2],[30.8,26.8],[18,-22]];
 picks.forEach((p,i)=>{const v=view(unit(p[0],p[1]),L); if(v[2]<=0) return;
@@ -23,7 +23,7 @@ const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" vi
 <circle cx="${cx}" cy="${cy}" r="${R}" fill="url(#body)"/>
 <circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="#2e9bb8" stroke-opacity="0.3"/>
 ${dots}${marks}
-<text x="80" y="150" fill="#7fcbdc" font-size="23" font-weight="600" letter-spacing="3.2" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">NEURIPS 2026 &#183; PARIS &#183; 12&#8211;13 DECEMBER</text>
+<text x="80" y="150" fill="#7fcbdc" font-size="23" font-weight="600" letter-spacing="3.2" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">NEURIPS 2026 &#183; PARIS &#183; DECEMBER 2026</text>
 <text x="80" y="252" fill="#ffffff" font-size="74" font-weight="600" font-family="Georgia, serif">UserSim</text>
 <text x="80" y="336" fill="#ffffff" font-size="74" font-weight="600" font-family="Georgia, serif">@ NeurIPS 2026</text>
 <rect x="80" y="392" width="3" height="110" fill="#e2673c"/>
