@@ -23,13 +23,13 @@ const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" vi
 <circle cx="${cx}" cy="${cy}" r="${R}" fill="url(#body)"/>
 <circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="#2e9bb8" stroke-opacity="0.3"/>
 ${dots}${marks}
-<text x="80" y="150" fill="#7fcbdc" font-size="23" font-weight="600" letter-spacing="3.2" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">NEURIPS 2026 &#183; PARIS &#183; DECEMBER 2026</text>
+<text x="80" y="150" fill="#7fcbdc" font-size="20" font-weight="600" letter-spacing="2.4" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">NEURIPS 2026 &#183; PARIS &#183; 12 OR 13 DECEMBER</text>
 <text x="80" y="252" fill="#ffffff" font-size="74" font-weight="600" font-family="Georgia, serif">UserSim</text>
 <text x="80" y="336" fill="#ffffff" font-size="74" font-weight="600" font-family="Georgia, serif">@ NeurIPS 2026</text>
 <rect x="80" y="392" width="3" height="110" fill="#e2673c"/>
 <text x="106" y="428" fill="#eef0f4" font-size="26" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">Simulated users now drive AI evaluation and</text>
-<text x="106" y="466" fill="#eef0f4" font-size="26" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">training, but can we trust them?</text>
-<text x="106" y="504" fill="#a2abbd" font-size="22" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">Diverse, faithful, and trustworthy user simulation.</text>
+<text x="106" y="466" fill="#eef0f4" font-size="26" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">training, but when can we trust them?</text>
+<text x="106" y="504" fill="#a2abbd" font-size="22" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">Diverse, faithful, and valid user simulation.</text>
 </svg>
 `;
 writeFileSync("../assets/og-image.svg",svg);

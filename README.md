@@ -32,8 +32,8 @@ tools/          scripts that regenerate the generated assets
 
 To change copy, edit [`index.html`](index.html). Its sections are commented and
 appear in the order they render: hero, key dates, mission, why now, who it's
-for, pillars, debate, artifacts, call for papers, responsible use, FAQ,
-speakers, program, organizers, contact.
+for, pillars, cross-community panel, program, speakers, artifacts, call for
+papers, responsible use, organizers, program committee, contact, FAQ.
 Small edits can be made from GitHub's web editor without cloning.
 
 ## Graphics
