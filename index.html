@@ -10,7 +10,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="UserSim @ NeurIPS 2026">
-<meta property="og:description" content="Simulated users now drive AI evaluation and training, but can we trust them? NeurIPS 2026, Paris.">
+<meta property="og:description" content="Simulated users now drive AI evaluation and training, but when can we trust them? NeurIPS 2026, Paris.">
 <meta property="og:url" content="https://usersim-workshop.github.io/">
 <meta property="og:image" content="https://usersim-workshop.github.io/assets/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -35,11 +35,11 @@
     <nav class="nav-links" aria-label="Primary">
       <a href="#about">About</a>
       <a href="#audience">Who it&rsquo;s for</a>
+      <a href="#program">Program</a>
       <a href="#artifacts">Artifacts</a>
       <a href="#cfp">Submit</a>
-      <a href="#speakers">Program</a>
-      <a href="#faq">FAQ</a>
       <a href="#organizers">Organizers</a>
+      <a href="#faq">FAQ</a>
     </nav>
   </div>
 </header>
@@ -54,8 +54,8 @@
       <p class="eyebrow">NeurIPS 2026 &middot; Paris &middot; 12 or 13 December</p>
       <h1>UserSim @ NeurIPS</h1>
       <p class="hero-full-title">Grounded User Simulation for Model Evaluation and Training: Diversity, Fidelity, and Validity</p>
-      <p class="thesis">Simulated users now drive AI evaluation and training, but can we trust them?</p>
-      <p class="thesis-sub">Making user simulation diverse, faithful, and trustworthy.</p>
+      <p class="thesis">Simulated users now drive AI evaluation and training, but when can we trust them?</p>
+      <p class="thesis-sub">Making user simulation diverse, faithful, and valid.</p>
       <div class="btn-row">
         <a class="btn btn-primary" href="#cfp">Call for Papers</a>
         <a class="btn btn-ghost" href="#dates">Key Dates</a>
@@ -104,7 +104,7 @@
     <div class="section-head">
       <p class="eyebrow">The mission</p>
       <h2>Accelerate user simulation as an open, rigorous, shared capability</h2>
-      <p class="prose lede-muted">The opportunity is to make user-simulation methods open, validated, and shared across communities. We are bringing together the people who build simulators, the people who depend on them, and the people who test where they fail, helping establish the evidence, standards, and open tools the field can build on.</p>
+      <p class="prose">The opportunity is to make user-simulation methods open, validated, and shared across communities. We are bringing together the people who build simulators, the people who depend on them, and the people who test where they fail, helping establish the evidence, standards, and open tools the field can build on.</p>
     </div>
   </div>
 </section>
@@ -119,11 +119,12 @@
     <div class="prose reveal">
       <p>User simulation models how people, and increasingly agents acting on their behalf, behave and respond as they interact with AI systems, products, services, and environments. Simulated users now appear in agentic training pipelines, conversational-search evaluation, dialogue systems, recommender systems, and tool-use benchmarks.</p>
       <p>Done well, simulation provides scalable and reproducible interaction data, broader coverage of rare and long-tail behavior, finer control over demographic and behavioral variation, and a path to evaluating multilingual and sovereign-AI systems with little in-language production traffic.</p>
-      <p>But adoption is outpacing validation. <strong>Measured agent success can move by as much as nine points depending only on which model plays the user.</strong> Overly cooperative simulators can inflate performance, and simulators can be miscalibrated for speakers of dialects including African American Vernacular English and Indian English. If the simulator is a measurement instrument, it needs calibration.</p>
+      <p>But adoption is outpacing validation. In <a href="https://arxiv.org/abs/2601.17087"><em>Lost in Simulation</em></a>, <strong>measured agent success shifted by as much as nine points depending on which model played the user.</strong> The study also found that overly cooperative simulators can inflate performance and that simulators can be miscalibrated for speakers of dialects including African American Vernacular English and Indian English. Simulator choice is therefore part of the measurement, not a neutral implementation detail.</p>
+      <p>The challenge is broader than selecting a better model. <a href="https://arxiv.org/abs/2507.22034">UserBench</a> models users who reveal preferences incrementally, while <a href="https://arxiv.org/abs/2506.07982">&tau;<sup>2</sup>-bench</a> represents settings in which users share control of the environment. These designs highlight what realistic simulation must account for: goals that evolve over time, interaction histories, other actors, and the social, digital, and physical environments that constrain behavior. If the simulator is a measurement instrument, both the user and the conditions shaping their behavior need validation.</p>
       <p>At the same time, grounded population-scale simulation is newly feasible. The field has an opportunity to establish shared evidence and reporting norms now, before weak assumptions harden into standard practice.</p>
     </div>
     <figure class="figure reveal">
-      <canvas data-bloom data-aspect="2.7"></canvas>
+      <canvas data-bloom data-aspect="2.7" data-min-height="150" role="img" aria-label="A real-user trajectory and a simulated-user trajectory begin at the same opening turn and diverge over six turns.">A real-user trajectory and simulated-user trajectory diverge over six turns.</canvas>
       <figcaption>The simulation-to-reality (Sim2Real) gap: a real user and a simulated one, given the same opening turn, drifting apart as the conversation goes on.</figcaption>
     </figure>
   </div>
@@ -134,8 +135,8 @@
   <div class="wrap">
     <div class="section-head">
       <p class="eyebrow">Who it&rsquo;s for</p>
-      <h2>Across communities, one question</h2>
-      <p class="prose lede-muted">Relevant work is scattered across labs and communities that rarely meet, often using different terminology, assumptions, and evaluation practices. Without shared, validated simulators, datasets, and reporting norms, results remain difficult to compare and the field cannot build cumulatively. We are convening these communities around the same object: the simulated user.</p>
+      <h2>Across communities, one shared challenge</h2>
+      <p class="prose">Relevant work is scattered across labs and communities that rarely meet, often using different terminology, assumptions, and evaluation practices. Without shared, validated simulators, datasets, and reporting norms, results remain difficult to compare and the field cannot build cumulatively. We are convening these communities around a shared challenge: representing users, populations, and the contexts that shape their behavior.</p>
     </div>
     <ul class="communities reveal">
       <li>Agentic LLM evaluation</li>
@@ -150,8 +151,8 @@
     <p class="prose reveal call-out"><strong>If you build simulators, validate or audit them, or use them to train and evaluate models, this workshop is for you.</strong> Work that stress-tests simulation is as welcome as work that advances it. Negative results, replications, and evidence that a simulator fails to transfer are first-class contributions.</p>
 
     <ul class="diff-list reveal">
-      <li><strong>The first dedicated NeurIPS venue for user simulation.</strong> Unlike broader agent and environment workshops, this one centers the simulated user itself: persona fidelity, Sim2Real gaps, fairness, and representativeness.</li>
-      <li><strong>Broader than IR-specific efforts.</strong> It builds on <a href="https://sim4ia.org/">Sim4IA</a> and <a href="https://trec.usersim.ai/guidelines">TREC</a>, but brings the topic to the ML community across agentic LLMs, IR, dialogue, HCI and social simulation, RL, and recommenders.</li>
+      <li><strong>The first NeurIPS workshop centered squarely on user simulation.</strong> Prior workshops have explored adjacent topics such as persona modeling, agent environments, and multi-turn interaction. UserSim makes the simulated user the unifying object across evaluation and training.</li>
+      <li><strong>Building across communities.</strong> UserSim builds on <a href="https://sim4ia.org/">Sim4IA</a> and <a href="https://trec.usersim.ai/guidelines">TREC</a> while connecting them with agentic LLMs, dialogue, HCI and social simulation, reinforcement learning, and recommender systems.</li>
       <li><strong>Evaluation and training together.</strong> It connects simulation as an evaluation substrate with simulation as training data, preference and process-reward signal, and RL environment, while pairing simulator builders with validity-and-fairness skeptics.</li>
     </ul>
   </div>
@@ -163,7 +164,7 @@
     <div class="section-head">
       <p class="eyebrow">Three pillars</p>
       <h2>What must a trustworthy simulator demonstrate?</h2>
-      <p class="prose lede-muted">We organize the agenda around three pillars, covering the two strategically important uses of simulation: <strong>evaluation</strong> of interactive and agentic systems, and <strong>training</strong> via SFT data, preference and process-reward signals, and simulators as RL environments.</p>
+      <p class="prose">We organize the agenda around three pillars, covering the two strategically important uses of simulation: <strong>evaluation</strong> of interactive and agentic systems, and <strong>training</strong> via SFT data, preference and process-reward signals, and simulators as RL environments.</p>
     </div>
 
     <div class="pillars">
@@ -176,7 +177,7 @@
           <circle cx="27" cy="29" r="2.6" fill="#e2673c"/>
         </svg>
         <h3>Diversity</h3>
-        <p>The range of users, languages, cultures, goals, tasks, and scenarios represented, so simulation spans the real population rather than a narrow slice.</p>
+        <p>The range of users, languages, cultures, goals, tasks, and scenarios represented, so simulation spans the target population rather than a narrow slice.</p>
       </article>
 
       <article class="pillar reveal">
@@ -188,7 +189,7 @@
         <p>Whether simulated users match real individual and population-level behavior, including style, strategy, natural variation, and the tendency of real users to be incomplete, inconsistent, impatient, or strategic rather than idealized and cooperative.</p>
       </article>
 
-      <article class="pillar pillar-apex reveal">
+      <article class="pillar reveal">
         <svg class="pillar-mark" viewBox="0 0 34 34" aria-hidden="true">
           <line x1="17" y1="2" x2="17" y2="32" stroke="#8a93a5" stroke-width="1.6" stroke-dasharray="3 4"/>
           <path d="M4 17 H27" fill="none" stroke="#2e9bb8" stroke-width="2.4" stroke-linecap="round"/>
@@ -200,213 +201,22 @@
     </div>
 
     <figure class="figure reveal">
-      <canvas data-swarm data-aspect="2.7"></canvas>
-      <figcaption>Diversity, stated literally: how much of the real population does a simulator actually stand for?</figcaption>
+      <canvas data-swarm data-aspect="2.7" data-min-height="156" role="img" aria-label="A field representing the target population, with a smaller highlighted subset showing what a simulator covers.">A target population with a highlighted subset showing what the simulator covers.</canvas>
+      <figcaption>Diversity, stated literally: how much of the target population does a simulator actually stand for?</figcaption>
     </figure>
   </div>
 </section>
 
-<!-- =========================================================== DEBATE -->
-<section class="debate" id="debate">
-  <div class="wrap debate-inner">
+<!-- ============================================================ PANEL -->
+<section class="panel" id="panel">
+  <div class="wrap panel-inner">
     <div>
       <p class="eyebrow">The centerpiece</p>
-      <h2 class="debate-q">&ldquo;Can we trust<br>simulated users?&rdquo;</h2>
+      <h2 class="panel-q">What Must User Simulation Capture?</h2>
     </div>
     <div>
-      <p>A moderated debate sits at the heart of the program, pairing the people building simulators with the people stress-testing them. We are deliberately seating builders opposite skeptics so the day produces shared standards rather than shared enthusiasm.</p>
-      <p>The goal is not a yes-or-no verdict. It is a practical account of which claims simulation can support, what validation those claims require, and which failure modes every evaluation should disclose.</p>
-      <p class="debate-note">Panelists are being confirmed and will be announced here.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ======================================================== ARTIFACTS -->
-<section id="artifacts">
-  <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">What you get out of it</p>
-      <h2>Shared infrastructure, not just a program</h2>
-      <p class="prose lede-muted">We build on open community efforts rather than starting from scratch. Participants should leave with reusable artifacts and agreement on what a trustworthy simulator ought to report.</p>
-    </div>
-
-    <ul class="artifact-list reveal">
-      <li class="artifact">
-        <h3>A pilot baseline user simulator</h3>
-        <p>An open, census-conditioned baseline to build on, extend or argue with, released with its persona and configuration scripts.</p>
-      </li>
-      <li class="artifact">
-        <h3>A simulator reporting standard</h3>
-        <p>A validation checklist and failure-mode taxonomy: which simulator was used, how it was validated, on which populations, and what class of claim the results can support.</p>
-      </li>
-      <li class="artifact">
-        <h3>A living benchmark catalog</h3>
-        <p>A maintained index of open benchmarks, datasets and evaluation environments for user simulation across communities.</p>
-      </li>
-      <li class="artifact">
-        <h3>A community calibration exercise</h3>
-        <p>A non-competitive first-year exercise over selected <a href="https://trec.usersim.ai/guidelines">TREC-style</a> and <a href="https://arxiv.org/abs/2506.07982">&tau;-family</a> scenarios, with a fairness and representativeness lens. Participation is open to any simulator and does not require a paper submission.</p>
-      </li>
-      <li class="artifact">
-        <h3>A community report</h3>
-        <p>Written breakout notes consolidated into a short public report on what the field agrees a trustworthy simulator should demonstrate.</p>
-      </li>
-    </ul>
-
-    <p class="prose neutrality reveal">Participants will run their simulator on selected scenarios, document it with the shared reporting checklist, and bring results and failure observations to the calibration discussion. In return, they receive reusable scenarios, baseline and configuration scripts, comparable behavioral measures, and a voice in the public community report. The catalog covers work from across the field, including SOTOPIA, UserBench and ConvApparel, not only the benchmarks the organizers happen to have built. A future edition may expand this foundation into a competitive leaderboard; Year 1 is about agreeing on the evidence a trustworthy simulator should report.</p>
-  </div>
-</section>
-
-<!-- ============================================================== CFP -->
-<section id="cfp" class="section-tint">
-  <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">Call for papers</p>
-      <h2>Bring your evidence, methods, and hard questions</h2>
-      <p class="prose lede-muted">We welcome empirical studies, benchmark proposals, negative results, replications, tools and demos, position papers, and methodological reports. Whether you are building a simulator or testing where one breaks, we want work that helps the community reason more rigorously about simulated users.</p>
-    </div>
-
-    <ul class="why-submit reveal">
-      <li><strong>Set the scientific standard</strong><span>Help define the evidence needed before results from simulated users can be trusted.</span></li>
-      <li><strong>Build an open foundation</strong><span>Contribute to shared simulators, scenarios, validation practices, reporting guidance, and benchmark resources.</span></li>
-      <li><strong>Reach across communities</strong><span>Put your work in conversation with researchers spanning agentic evaluation, IR, dialogue, HCI, RL, recommenders, synthetic data, multilingual NLP, fairness, and evaluation.</span></li>
-      <li><strong>Develop and showcase early work</strong><span>Receive focused feedback, present a poster, and be considered for a spotlight while retaining the option to publish an archival version later.</span></li>
-    </ul>
-
-    <dl class="spec reveal">
-      <div><dt>Length</dt><dd>4&ndash;8 pages, excluding references and appendices</dd></div>
-      <div><dt>Format</dt><dd>NeurIPS 2026 style files</dd></div>
-      <div><dt>Review</dt><dd>Double-blind; please anonymize your submission</dd></div>
-      <div><dt>Preprints</dt><dd>Permitted; an existing arXiv posting is not grounds for desk rejection</dd></div>
-      <div><dt>Concurrent submissions</dt><dd>Permitted if the other venue allows them; the same work may not be submitted to the NeurIPS 2026 main track</dd></div>
-      <div><dt>Archival</dt><dd>Non-archival; authors retain all rights</dd></div>
-      <div><dt>Presentation</dt><dd>Poster and spotlight presentations are delivered in person in Paris; acceptance itself does not depend on attendance</dd></div>
-      <div><dt>Submission site</dt><dd>OpenReview, opening shortly</dd></div>
-    </dl>
-
-    <div class="btn-row" style="margin-bottom:3rem">
-      <!-- Replace with a real <a href="..."> once the OpenReview venue exists. -->
-      <span class="btn btn-primary" aria-disabled="true">Submit by 29 August (OpenReview opening shortly)</span>
-    </div>
-
-    <h3 class="topics-head">Topics</h3>
-
-    <div class="topic-group reveal">
-      <h4><span class="swatch" style="background:var(--human)"></span> Diversity</h4>
-      <ul>
-        <li>Population grounding, representativeness and census-conditioned personas</li>
-        <li>Multilingual, cross-cultural and lower-resource user simulation</li>
-        <li>Scenario and goal generation; coverage of rare and long-tail interactions</li>
-        <li>Demographic and dialectal calibration of simulators</li>
-      </ul>
-    </div>
-
-    <div class="topic-group reveal">
-      <h4><span class="swatch" style="background:var(--human)"></span> Fidelity</h4>
-      <ul>
-        <li>Behavioral realism and cognitive plausibility</li>
-        <li>Individual-level versus distributional fidelity, and the metrics each requires</li>
-        <li>Behavioral variance, entropy and mode collapse in simulated populations</li>
-        <li>Persona adherence, steerability and consistency over long interactions</li>
-        <li>Modeling users who are incomplete, inconsistent, impatient or strategic</li>
-      </ul>
-    </div>
-
-    <div class="topic-group reveal">
-      <h4><span class="swatch" style="background:var(--sim)"></span> Validity</h4>
-      <ul>
-        <li>Sim2Real validation against held-out human studies</li>
-        <li>Relative, system-ranking validity versus absolute validity</li>
-        <li>Identifiability: separating agent capability from simulator behavior</li>
-        <li>Contamination, reward hacking and Goodhart effects when training against a simulator</li>
-        <li>Reporting norms and disclosure standards for simulation-based evaluation</li>
-      </ul>
-    </div>
-
-    <div class="topic-group reveal">
-      <h4><span class="swatch" style="background:var(--text-muted)"></span> Across all three</h4>
-      <ul>
-        <li>Simulation for training: synthetic interaction data, preference and process rewards, simulators as RL environments</li>
-        <li>Open benchmarks, environments and tooling for building and scaling simulators</li>
-        <li>Agentic and tool-use user simulation; interactive and trajectory-level evaluation</li>
-        <li>Shared terminology and problem taxonomies that transfer across communities</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ================================================= RESPONSIBLE USE -->
-<section id="responsible-use">
-  <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">Responsible use</p>
-      <h2>Simulation can reduce harm or hide it</h2>
-    </div>
-    <div class="prose reveal">
-      <p>User simulation can support privacy-preserving evaluation, scalable safety testing, and disaggregated fairness analysis without repeatedly exposing real people to risk. But simulators can also inherit bias, reward systems for exploiting their quirks, or create an &ldquo;easy mode&rdquo; that masks failures real users would encounter.</p>
-      <p>That tension is central to the workshop. We are interested not only in stronger simulators, but in validation and reporting practices that make the limits of simulation visible.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================== FAQ -->
-<section id="faq">
-  <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">Before you ask</p>
-      <h2>Questions</h2>
-    </div>
-
-    <div class="faq reveal">
-      <details>
-        <summary>Do I need to be registered for NeurIPS Paris to submit?</summary>
-        <p>No. Submissions are open to everyone, wherever you are and whether or not you attend. NeurIPS 2026 runs across Sydney, Paris and Atlanta and attendees choose a site; this workshop is held in Paris. Location matters only for presenting, not for submitting or being accepted.</p>
-      </details>
-      <details>
-        <summary>What if no author can attend in Paris?</summary>
-        <p>Your paper is still reviewed and, if accepted, listed on this site and on OpenReview. At least one author is expected to present each accepted paper in person. A paper with no author in Paris remains accepted but does not receive a poster or spotlight slot. All poster and spotlight presentations must be delivered in person in Paris.</p>
-      </details>
-      <details>
-        <summary>Can I follow the workshop online?</summary>
-        <p>NeurIPS has announced live streaming and recording for an online audience. Details about access and recording availability will be added when confirmed by NeurIPS.</p>
-      </details>
-      <details>
-        <summary>Is the workshop archival?</summary>
-        <p>No. The workshop is non-archival and authors retain all rights. You are free to submit the work to an archival venue afterwards.</p>
-      </details>
-      <details>
-        <summary>Can I submit work that is currently under review elsewhere?</summary>
-        <p>Yes. Because the workshop is non-archival, concurrent submission is permitted. Please check that the other venue permits it as well.</p>
-      </details>
-      <details>
-        <summary>Is previously published work eligible? What about main-track NeurIPS 2026 papers?</summary>
-        <p>Work previously published at an archival venue is not eligible. Preprints and other non-archival versions are permitted. The same work may not be submitted to or appear in the NeurIPS 2026 main track.</p>
-      </details>
-      <details>
-        <summary>I already have a preprint on arXiv. Does that disqualify me?</summary>
-        <p>No. Preprints are explicitly allowed. Please anonymize your submission for review, but we will not desk-reject a paper solely because a preprint exists.</p>
-      </details>
-      <details>
-        <summary>Can the organizers submit? How are conflicts of interest handled?</summary>
-        <p>They cannot. Organizers, and anyone with a personal conflict of interest with an organizer, may not submit. Organizers do not give talks and do not assess conflicted submissions, and no reviewer evaluates a submission from their own institution or a close collaborator.</p>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- ========================================================= SPEAKERS -->
-<section id="speakers" class="section-tint">
-  <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">Program</p>
-      <h2>Invited speakers</h2>
-    </div>
-    <div class="tba reveal">
-      <h3>Craig Boutilier</h3>
-      <p><strong>Google Research</strong> &middot; Decision theory, user modeling, recommender systems, and user simulation.</p>
-      <h3>Hyunwoo Kim</h3>
-      <p><strong>KAIST Kim Jaechul Graduate School of AI</strong> &middot; Incoming faculty member and designated head of the <a href="https://nvidianews.nvidia.com/news/nvidia-and-kaist-launch-joint-ai-research-lab-to-accelerate-ai-innovation-in-korea">NVIDIA-KAIST Joint AI Research Lab</a>, advancing agentic AI models and systems for Korea. His research spans synthetic data, privacy, and social reasoning.</p>
-      <p>Additional invited speakers and debate panelists are being confirmed across pluralistic alignment, validity and fairness, grounded social simulation, reinforcement learning, and simulator-based training. Names and talk titles will be announced as participation is confirmed for Paris.</p>
+      <p>People do not act as isolated personas, and no single user stands for a population. A simulation must decide what it represents: individual goals and histories, behavioral variation and population distributions, relationships and other actors, and the social, digital, and physical environments that shape interaction.</p>
+      <p>This cross-community panel will examine which components matter for different uses, how they should be grounded and evaluated, and how requirements change across evaluation, synthetic data, and training.</p>
     </div>
   </div>
 </section>
@@ -419,8 +229,205 @@
       <h2>Schedule</h2>
     </div>
     <div class="tba reveal">
-      <p>A single full day, provisionally 08:00&ndash;17:00. The program combines a keynote and invited talks, contributed spotlights, two poster sessions, the <a href="#debate">moderated debate</a>, and a closing cross-community breakout to consolidate the reporting standard and benchmark catalog.</p>
-      <p>The detailed schedule will be published once speakers are confirmed. Every session is designed to move from evidence to action: what works, where simulation fails, and what the community should report next.</p>
+      <p>A single full day, provisionally 08:00&ndash;17:00. The program combines a keynote and invited talks, contributed spotlights, two poster sessions, the <a href="#panel">cross-community panel</a>, and a closing breakout to advance draft reporting guidance and the benchmark catalog.</p>
+      <p>The detailed schedule will be published once all speakers are confirmed. Every session is designed to move from evidence to action: what user simulation needs to capture, where methods fail, and what the community should investigate and report next.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= SPEAKERS -->
+<section id="speakers" class="section-tint">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Program</p>
+      <h2>Confirmed invited speakers</h2>
+    </div>
+    <ul class="speaker-list reveal">
+      <li class="speaker-chip">
+        <span class="speaker-initials avatar-h" aria-hidden="true">CB</span>
+        <span>
+          <strong>Craig Boutilier</strong>
+          <span class="speaker-affil">Google Research</span>
+          <span class="speaker-focus">Decision theory, user modeling, recommender systems, and user simulation</span>
+        </span>
+      </li>
+      <li class="speaker-chip">
+        <span class="speaker-initials avatar-s" aria-hidden="true">HK</span>
+        <span>
+          <strong>Hyunwoo Kim</strong>
+          <span class="speaker-affil">KAIST Kim Jaechul Graduate School of AI</span>
+          <span class="speaker-focus"><a href="https://nvidianews.nvidia.com/news/nvidia-and-kaist-launch-joint-ai-research-lab-to-accelerate-ai-innovation-in-korea">NVIDIA-KAIST Joint AI Research Lab</a>; synthetic data, privacy, social reasoning, and agentic AI</span>
+        </span>
+      </li>
+    </ul>
+    <p class="speaker-note reveal">Additional invited speakers and cross-community panelists are being confirmed across validity and fairness, grounded social simulation, reinforcement learning, and simulator-based training.</p>
+  </div>
+</section>
+
+<!-- ======================================================== ARTIFACTS -->
+<section id="artifacts">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">What we aim to build</p>
+      <h2>Shared infrastructure, not just a program</h2>
+      <p class="prose">We aim to build on open community efforts rather than starting from scratch. The planned outputs are reusable artifacts and draft community guidance on what evidence a simulator should report for a stated use.</p>
+    </div>
+
+    <ul class="artifact-list reveal">
+      <li class="artifact">
+        <h3>A pilot baseline user simulator</h3>
+        <p>A planned open, census-conditioned baseline to build on, extend, or argue with, together with persona and configuration scripts.</p>
+      </li>
+      <li class="artifact">
+        <h3>Draft reporting guidance</h3>
+        <p>A validation checklist and failure-mode taxonomy covering which simulator was used, how it was validated, which populations it represents, and what class of claim the evidence can support.</p>
+      </li>
+      <li class="artifact">
+        <h3>A living benchmark catalog</h3>
+        <p>A proposed index of open benchmarks, datasets, and evaluation environments for user simulation across communities.</p>
+      </li>
+      <li class="artifact">
+        <h3>A community calibration exercise</h3>
+        <p>A planned non-competitive first-year exercise over selected <a href="https://trec.usersim.ai/guidelines">TREC-style</a> and <a href="https://arxiv.org/abs/2506.07982">&tau;-family</a> scenarios, with a fairness and representativeness lens.</p>
+      </li>
+      <li class="artifact">
+        <h3>A community report</h3>
+        <p>Written breakout notes consolidated into a short public report recording agreements, disagreements, open questions, and research priorities.</p>
+      </li>
+    </ul>
+
+    <p class="prose neutrality reveal">Detailed participation mechanics for the calibration exercise will be announced once scenarios and reporting requirements are finalized. The planned catalog will cover work from across the field, including SOTOPIA, UserBench, and ConvApparel, not only benchmarks built by the organizers. A future edition may expand this foundation into a competitive leaderboard.</p>
+  </div>
+</section>
+
+<!-- ============================================================== CFP -->
+<section id="cfp" class="section-tint">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Call for papers</p>
+      <h2>Bring your evidence, methods, and hard questions</h2>
+    </div>
+
+    <div class="prose cfp-intro reveal">
+      <p>Simulated users now drive AI evaluation and training, but when can we trust them? User simulators increasingly serve as evaluation subjects, sources of synthetic interaction data and preference signals, and interactive environments for reinforcement learning. Yet overly cooperative, unrepresentative, or poorly calibrated simulators can inflate performance and produce conclusions that do not transfer to real users.</p>
+      <p>UserSim @ NeurIPS 2026 brings together researchers building, using, validating, and stress-testing user simulators. Our goal is to establish the evidence, standards, and open tools needed to make user simulation diverse, faithful, and valid.</p>
+      <p>We invite non-archival submissions of 4&ndash;8 pages as either extended abstracts or short papers. We welcome empirical studies, benchmark proposals, negative results, replications, tools and demos, position papers, and methodological reports.</p>
+    </div>
+
+    <h3 class="topics-head">Why submit?</h3>
+    <p class="prose">UserSim is designed to produce more than a day of presentations. It is an opportunity to help establish the scientific and open-source foundations of trustworthy user simulation.</p>
+
+    <ul class="why-submit reveal">
+      <li><strong>Set the scientific standard</strong><span>Help define the evidence needed before results from simulated users can be trusted.</span></li>
+      <li><strong>Build an open foundation</strong><span>Contribute to shared simulators, scenarios, validation practices, reporting guidance, and benchmark resources that the community can build on.</span></li>
+      <li><strong>Reach across communities</strong><span>Put your work in conversation with researchers spanning agentic evaluation, information retrieval, dialogue, HCI, reinforcement learning, recommender systems, synthetic data, and responsible AI.</span></li>
+      <li><strong>Develop and showcase early work</strong><span>Receive focused feedback, present a poster, and be considered for a spotlight while retaining the option to publish an archival version later.</span></li>
+    </ul>
+
+    <h3 class="topics-head">Topics</h3>
+
+    <div class="topic-group reveal">
+      <h4><span class="swatch" style="background:var(--human)"></span> Diversity</h4>
+      <ul>
+        <li>Population grounding and representativeness</li>
+        <li>Fairness and demographic, dialectal, and multilingual calibration of simulators</li>
+        <li>Scenario and goal generation, including coverage of rare and long-tail interactions</li>
+      </ul>
+    </div>
+
+    <div class="topic-group reveal">
+      <h4><span class="swatch" style="background:var(--human)"></span> Fidelity</h4>
+      <ul>
+        <li>Behavioral realism and cognitive plausibility of simulated users; the Sim2Real gap and validation against real humans</li>
+        <li>Individual- and population-level fidelity, including behavioral variation, style, strategy, and consistency over time</li>
+        <li>Controllability and reliability: steering persona and instruction-following, consistency across runs, and simulator failures that invalidate a measurement or a reward signal</li>
+      </ul>
+    </div>
+
+    <div class="topic-group reveal">
+      <h4><span class="swatch" style="background:var(--sim)"></span> Validity</h4>
+      <ul>
+        <li>Simulator diversity</li>
+        <li>Train/eval separation and contamination</li>
+        <li>Human calibration</li>
+        <li>LLM-judge auditing</li>
+      </ul>
+    </div>
+
+    <div class="topic-group reveal">
+      <h4><span class="swatch" style="background:var(--text-muted)"></span> Settings and modalities</h4>
+      <ul>
+        <li>Agentic and tool-use user simulation; interactive and trajectory-level evaluation</li>
+        <li>Voice and multimodal user simulation: turn-taking, interruption, and full-duplex interaction</li>
+        <li>Conversational search, dialogue systems, recommender systems, HCI, and social simulation</li>
+      </ul>
+    </div>
+
+    <div class="topic-group reveal">
+      <h4><span class="swatch" style="background:var(--text-muted)"></span> Training and infrastructure</h4>
+      <ul>
+        <li>Simulation for training: SFT, preference optimization, and process-reward data generation; the user simulator as an interactive RL environment</li>
+        <li>Small, open, and distilled user simulators, including specialized models rather than prompted ones, that the community can run locally</li>
+        <li>Synthetic-data generation and compound-AI pipelines for building, grounding, and scaling simulators (frameworks, persona datasets)</li>
+      </ul>
+    </div>
+
+    <h3 class="topics-head">We are especially interested in work that advances</h3>
+    <ol class="priority-list reveal">
+      <li>Open, multi-domain benchmarks that move beyond narrow settings and cover diverse use cases</li>
+      <li>Validation methods that measure how well a simulator matches real human behavior, including proposals for human-likeness scores and calibration against held-out human data</li>
+      <li>Fairness and calibration benchmarks across dialects, languages, and populations</li>
+      <li>Guidance on contamination and reward hacking when simulators are used as a training signal</li>
+      <li>Reporting norms for simulation-based evaluation, including disclosure standards for which simulator was used, how it was validated, which populations it represents, and its computational and API cost</li>
+      <li>A shared problem taxonomy and terminology that lets methods and results transfer across communities</li>
+      <li>Small, open, and distilled simulators that make evaluation reproducible without frontier-API dependence, including evidence on whether specialization can substitute for scale</li>
+      <li>Cross-disciplinary work that connects methods, evidence, or validation practices across machine learning, HCI, information retrieval, dialogue, recommender systems, behavioral and social science, fairness, and related fields</li>
+    </ol>
+
+    <h3 class="topics-head">Submission details</h3>
+    <dl class="spec reveal">
+      <div><dt>Submission type</dt><dd>Non-archival extended abstract or short paper</dd></div>
+      <div><dt>Paper length</dt><dd>4&ndash;8 pages, excluding Limitations, Appendix, and References</dd></div>
+      <div><dt>Format</dt><dd>PDF using the <a href="https://www.overleaf.com/latex/templates/formatting-instructions-for-neurips-2026/bjdwqfdkyftc">NeurIPS 2026 LaTeX template</a></dd></div>
+      <div><dt>Submission portal</dt><dd>OpenReview link forthcoming</dd></div>
+      <div><dt>Review</dt><dd>Submissions must be anonymized for double-blind review</dd></div>
+      <div><dt>Archival status</dt><dd>Non-archival; authors retain all rights</dd></div>
+      <div><dt>Prior publication</dt><dd>Previously published work and work appearing in the NeurIPS 2026 main track are not eligible</dd></div>
+      <div><dt>Preprints</dt><dd>Permitted. An existing arXiv or other non-archival preprint is not grounds for rejection. Submissions must still be anonymized for review.</dd></div>
+      <div><dt>Concurrent submissions</dt><dd>Permitted because the workshop is non-archival, provided the other venue&rsquo;s policies also permit concurrent submission</dd></div>
+    </dl>
+
+    <h3 class="topics-head">Attendance and presentation</h3>
+    <div class="cfp-attendance prose reveal">
+      <p>UserSim is a one-day, in-person workshop in Paris. NeurIPS will provide live streaming and recording for an online audience; details about access and recording availability will be shared when confirmed.</p>
+      <p>At least one author is expected to present each accepted paper in person. If no author can attend, the paper will remain accepted and listed on the workshop site and OpenReview, but it will not receive a poster slot. Selected papers with an in-person presenter will receive spotlight presentations.</p>
+      <p>All poster and spotlight presentations must be delivered in person in Paris.</p>
+    </div>
+
+    <h3 class="topics-head">Important dates</h3>
+    <ul class="detail-list reveal">
+      <li><strong>Submission deadline:</strong> 29 August 2026, Anywhere on Earth</li>
+      <li><strong>Decision notification:</strong> 29 September 2026, Anywhere on Earth</li>
+      <li><strong>Workshop date:</strong> 12 or 13 December 2026, exact day to be confirmed</li>
+    </ul>
+
+    <div class="btn-row">
+      <!-- Replace with a real <a href="..."> once the OpenReview venue exists. -->
+      <span class="btn btn-primary" aria-disabled="true">Submit by 29 August (OpenReview link forthcoming)</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================= RESPONSIBLE USE -->
+<section id="responsible-use">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Responsible use</p>
+      <h2>Simulation can reduce harm or hide it</h2>
+    </div>
+    <div class="prose reveal">
+      <p>User simulation can reduce reliance on sensitive real-user data, support scalable safety testing, and enable disaggregated fairness analysis without repeatedly exposing real people to risk. But simulators can also inherit bias, reward systems for exploiting their quirks, or create an &ldquo;easy mode&rdquo; that masks failures real users would encounter.</p>
+      <p>That tension is central to the workshop. We are interested not only in stronger simulators, but in validation and reporting practices that make the limits of simulation visible.</p>
     </div>
   </div>
 </section>
@@ -490,21 +497,83 @@
       </li>
     </ul>
 
-    <div class="pc-block">
-      <h3>Program committee</h3>
-      <div class="tba">
-        <p>Confirmed reviewers include Yuncheng &ldquo;Devin&rdquo; Hua, Hao Xue, Jiantao Jiao, Eric Tramel, Dhruv Nathawani, Dane Corneil, Venkat Srinivasan, Charles Wang, and Ritu Gala. We are continuing to recruit across agentic evaluation, information retrieval, dialogue, HCI, reinforcement learning, and fairness. If you would like to review, please <a href="mailto:contact@usersim-workshop.org">get in touch</a>.</p>
-      </div>
+  </div>
+</section>
+
+<!-- ================================================= PROGRAM COMMITTEE -->
+<section id="program-committee">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Confirmed reviewers</p>
+      <h2>Program committee</h2>
     </div>
+    <ul class="pc-list reveal" aria-label="Confirmed program committee members">
+      <li class="pc-chip"><span class="pc-initials avatar-h" aria-hidden="true">DC</span><strong>Dane Corneil</strong></li>
+      <li class="pc-chip"><span class="pc-initials avatar-s" aria-hidden="true">RG</span><strong>Ritu Gala</strong></li>
+      <li class="pc-chip"><span class="pc-initials avatar-h" aria-hidden="true">YH</span><strong>Yuncheng &ldquo;Devin&rdquo; Hua</strong></li>
+      <li class="pc-chip"><span class="pc-initials avatar-s" aria-hidden="true">JJ</span><strong>Jiantao Jiao</strong></li>
+      <li class="pc-chip"><span class="pc-initials avatar-h" aria-hidden="true">AJ</span><strong>Aditya Joshi</strong></li>
+      <li class="pc-chip"><span class="pc-initials avatar-s" aria-hidden="true">DN</span><strong>Dhruv Nathawani</strong></li>
+      <li class="pc-chip"><span class="pc-initials avatar-h" aria-hidden="true">VS</span><strong>Venkat Srinivasan</strong></li>
+      <li class="pc-chip"><span class="pc-initials avatar-s" aria-hidden="true">ET</span><strong>Eric Tramel</strong></li>
+      <li class="pc-chip"><span class="pc-initials avatar-h" aria-hidden="true">CW</span><strong>Charles Wang</strong></li>
+      <li class="pc-chip"><span class="pc-initials avatar-s" aria-hidden="true">HX</span><strong>Hao Xue</strong></li>
+    </ul>
+    <p class="pc-note">We are continuing to recruit across agentic evaluation, information retrieval, dialogue, HCI, reinforcement learning, and fairness. If you would like to review, please <a href="mailto:organizers@usersim-workshop.org">contact the organizers</a>.</p>
   </div>
 </section>
 
 <!-- ========================================================== CONTACT -->
-<section id="contact">
+<section id="contact" class="section-tint">
   <div class="wrap">
     <p class="eyebrow">Contact</p>
     <h2>Get in touch</h2>
-    <p>Questions about submitting, joining the calibration exercise, contributing to the shared artifacts, or volunteering to review: <a href="mailto:contact@usersim-workshop.org">contact@usersim-workshop.org</a></p>
+    <p>Questions about submitting, joining the calibration exercise, contributing to the shared artifacts, or volunteering to review: <a href="mailto:organizers@usersim-workshop.org">organizers@usersim-workshop.org</a></p>
+  </div>
+</section>
+
+<!-- ============================================================== FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Before you ask</p>
+      <h2>Questions</h2>
+    </div>
+
+    <div class="faq reveal">
+      <details>
+        <summary>Do I need to be registered for NeurIPS Paris to submit?</summary>
+        <p>No. Submissions are open to everyone, wherever you are and whether or not you attend. This workshop is held in Paris. Location matters only for presenting, not for submitting or being accepted.</p>
+      </details>
+      <details>
+        <summary>What if no author can attend in Paris?</summary>
+        <p>At least one author is expected to present each accepted paper in person. If no author can attend, the paper remains accepted and listed on this site and OpenReview, but it does not receive a poster slot. Selected papers with an in-person presenter receive spotlight presentations. All poster and spotlight presentations must be delivered in person in Paris.</p>
+      </details>
+      <details>
+        <summary>Can I follow the workshop online?</summary>
+        <p>NeurIPS has announced live streaming and recording for an online audience. Details about access and recording availability will be added when confirmed by NeurIPS.</p>
+      </details>
+      <details>
+        <summary>Is the workshop archival?</summary>
+        <p>No. The workshop is non-archival and authors retain all rights. You are free to submit the work to an archival venue afterwards.</p>
+      </details>
+      <details>
+        <summary>Can I submit work that is currently under review elsewhere?</summary>
+        <p>Yes. Concurrent submissions are permitted because the workshop is non-archival, provided the other venue&rsquo;s policies also permit concurrent submission.</p>
+      </details>
+      <details>
+        <summary>Is previously published work eligible? What about main-track NeurIPS 2026 papers?</summary>
+        <p>Previously published work and work appearing in the NeurIPS 2026 main track are not eligible. Preprints and other non-archival versions are permitted.</p>
+      </details>
+      <details>
+        <summary>I already have a preprint on arXiv. Does that disqualify me?</summary>
+        <p>No. An existing arXiv or other non-archival preprint is not grounds for rejection. Submissions must still be anonymized for double-blind review.</p>
+      </details>
+      <details>
+        <summary>Can the organizers submit? How are conflicts of interest handled?</summary>
+        <p>Organizers may not submit. Sharing a large employer or institution with an organizer does not by itself make someone ineligible. Personal conflicts under NeurIPS policy, such as current advisees or close collaborators, remain ineligible. Organizers and reviewers will recuse themselves from submissions involving their institution or collaborators.</p>
+      </details>
+    </div>
   </div>
 </section>
 
@@ -514,11 +583,11 @@
   <div class="wrap footer-grid">
     <div>
       <p><strong style="color:var(--text-on-ink)">UserSim @ NeurIPS 2026</strong></p>
-      <p>Grounded User Simulation for Model Evaluation and Training</p>
+      <p>Grounded User Simulation for Model Evaluation and Training: Diversity, Fidelity, and Validity</p>
       <p>Paris &middot; 12 or 13 December 2026</p>
     </div>
     <div>
-      <p><a href="mailto:contact@usersim-workshop.org">contact@usersim-workshop.org</a></p>
+      <p><a href="mailto:organizers@usersim-workshop.org">organizers@usersim-workshop.org</a></p>
       <p><a href="https://neurips.cc/Conferences/2026">NeurIPS 2026</a></p>
       <p><a href="https://neurips.cc/public/CodeOfConduct">NeurIPS Code of Conduct</a></p>
     </div>

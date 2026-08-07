@@ -3,10 +3,9 @@
    --------------------------------------------------------------------------
    Design system notes for future editors:
 
-   The palette is semantic, not decorative. --human (warm) always means real
-   people or real behavior; --sim (cool) always means simulated. Every graphic
-   on the site uses that pairing consistently, so please keep it that way when
-   adding diagrams or new sections.
+  The palette is semantic in graphics: --human (warm) means real people or
+  behavior, while --sim (cool) means simulated. Elsewhere those colors may act
+  as restrained category or identity accents.
 
    Typography currently uses a refined system stack so the site has zero
    third-party requests. Self-hosted woff2 faces are a planned upgrade; when
@@ -55,7 +54,7 @@
   --measure: 100%;    /* text flows the container, same as cards and figures */
   --measure-hero: 29rem;
   --gutter: clamp(1.25rem, 4vw, 3rem);
-  --section-y: clamp(3.5rem, 8vw, 6rem);
+  --section-y: clamp(2.5rem, 5vw, 4rem);
   --radius: 10px;
 }
 
@@ -120,7 +119,7 @@ a:hover {
   border-radius: 3px;
 }
 
-/* One column for all section content. The hero, dates strip and debate band
+/* One column for all section content. The hero, dates strip and panel band
    deliberately opt out and run the full container width. */
 .section-head,
 .faq,
@@ -128,8 +127,7 @@ a:hover {
 .topic-group,
 .topics-head,
 .neutrality,
-.draft-note,
-.pc-block {
+.draft-note {
   max-width: var(--measure);
   margin-right: auto;
 }
@@ -150,12 +148,9 @@ a:hover {
   max-width: var(--measure);
 }
 
-.lede-muted {
-  color: var(--text-muted);
-}
-
 section {
   padding-block: var(--section-y);
+  scroll-margin-top: 70px;
 }
 
 .section-tint {
@@ -173,7 +168,7 @@ section {
 }
 
 .section-head {
-  margin-bottom: clamp(2rem, 4vw, 3rem);
+  margin-bottom: clamp(1.6rem, 3vw, 2.4rem);
 }
 
 
@@ -400,6 +395,9 @@ section {
 
 .hero-art canvas {
   display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
 }
 
 /* ---------------------------------------------------------- figures */
@@ -410,6 +408,9 @@ section {
 
 .figure canvas {
   display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: #fff;
@@ -528,6 +529,16 @@ section {
   border-right: 0;
 }
 
+@media (max-width: 700px) {
+  .date-card {
+    border-right: 0;
+    border-bottom: 1px solid var(--ink-3);
+  }
+  .date-card:last-child {
+    border-bottom: 0;
+  }
+}
+
 .date-card dt {
   font-size: var(--step--1);
   text-transform: uppercase;
@@ -585,55 +596,41 @@ section {
   margin-bottom: 1rem;
 }
 
-/* Validity is the apex: same white card, marked out by the accent rather than
-   by inverting the whole panel. */
-.pillar-apex {
-  border-color: var(--sim);
-  box-shadow: 0 0 0 1px var(--sim), 0 12px 30px -18px rgba(46, 155, 184, 0.6);
-}
+/* ------------------------------------------------------------------ panel */
 
-
-/* ---------------------------------------------------------------- debate */
-
-.debate {
+.panel {
   background: var(--ink-2);
   color: var(--text-on-ink);
   border-block: 1px solid var(--ink-3);
 }
 
-.debate-inner {
+.panel-inner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(1.5rem, 5vw, 4rem);
+  grid-template-columns: minmax(180px, 0.65fr) minmax(0, 1.35fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
   align-items: center;
 }
 
 @media (max-width: 780px) {
-  .debate-inner {
+  .panel-inner {
     grid-template-columns: 1fr;
     gap: 1.25rem;
   }
 }
 
-.debate .eyebrow {
+.panel .eyebrow {
   color: var(--human-soft);
 }
 
-.debate-q {
+.panel-q {
   font-size: var(--step-3);
   color: #fff;
   margin: 0;
 }
 
-.debate p {
+.panel p {
   color: var(--text-on-ink-muted);
   margin-bottom: 0.9em;
-}
-
-.debate-note {
-  font-size: var(--step--1);
-  color: var(--sim-soft);
-  margin-bottom: 0 !important;
 }
 
 /* ------------------------------------------------------------- artifacts */
@@ -699,6 +696,10 @@ section {
 
 /* ------------------------------------------------------------------ cfp */
 
+.cfp-intro {
+  margin-bottom: 2.5rem;
+}
+
 .why-submit {
   list-style: none;
   padding: 0;
@@ -725,6 +726,10 @@ section {
 }
 
 .topics-head {
+  font-family: var(--font-body);
+  font-size: var(--step-1);
+  font-weight: 700;
+  letter-spacing: -0.01em;
   margin-bottom: 1.25rem;
 }
 
@@ -760,6 +765,29 @@ section {
 
 .topic-group li {
   margin-bottom: 0.3em;
+}
+
+.priority-list,
+.detail-list {
+  max-width: var(--measure);
+  margin: 0 0 2.5rem;
+  padding-left: 1.35rem;
+  color: var(--text-muted);
+  font-size: var(--step--1);
+}
+
+.priority-list li,
+.detail-list li {
+  margin-bottom: 0.55rem;
+  padding-left: 0.25rem;
+}
+
+.cfp-attendance {
+  margin: 0 0 2.5rem;
+}
+
+.cfp-attendance p:last-child {
+  margin-bottom: 0;
 }
 
 .spec {
@@ -954,8 +982,114 @@ section {
   font-weight: 600;
 }
 
-.pc-block {
-  margin-top: 2.75rem;
+/* Confirmed speakers use individual chips rather than a shared placeholder. */
+.speaker-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.speaker-chip {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1.1rem 1.2rem;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.speaker-chip > span:last-child {
+  min-width: 0;
+}
+
+.speaker-initials {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  flex: none;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  font-weight: 600;
+}
+
+.speaker-chip strong,
+.speaker-affil,
+.speaker-focus {
+  display: block;
+}
+
+.speaker-affil {
+  margin-top: 0.15rem;
+  color: var(--text-muted);
+  font-size: var(--step--1);
+}
+
+.speaker-focus {
+  margin-top: 0.55rem;
+  color: var(--text-muted);
+  font-size: var(--step--1);
+  line-height: 1.55;
+}
+
+.speaker-note {
+  max-width: var(--measure);
+  margin: 1.25rem 0 0;
+  color: var(--text-muted);
+  font-size: var(--step--1);
+}
+
+.pc-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pc-chip {
+  flex: 0 1 220px;
+  min-width: 190px;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.8rem 1rem;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: var(--step--1);
+  font-weight: 600;
+}
+
+.pc-initials {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  flex: none;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+@media (max-width: 460px) {
+  .pc-chip {
+    flex-basis: 100%;
+  }
+}
+
+.pc-note {
+  max-width: var(--measure);
+  margin: 1.35rem 0 0;
+  color: var(--text-muted);
+  font-size: var(--step--1);
 }
 
 .tba {
@@ -999,6 +1133,11 @@ section {
 /* ------------------------------------------------------------- motion */
 
 .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal.reveal-pending {
   opacity: 0;
   transform: translateY(14px);
   transition: opacity 0.6s ease, transform 0.6s ease;
@@ -1013,7 +1152,8 @@ section {
   html {
     scroll-behavior: auto;
   }
-  .reveal {
+  .reveal,
+  .reveal.reveal-pending {
     opacity: 1;
     transform: none;
     transition: none;

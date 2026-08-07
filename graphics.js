@@ -15,35 +15,56 @@
   'use strict';
 
   var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var DPR = Math.min(window.devicePixelRatio || 1, 2);
   var RAD = Math.PI / 180, TAU = Math.PI * 2;
   var SANS = getComputedStyle(document.body).fontFamily;
   var HUMAN = '#e2673c', SIM = '#2e9bb8';
+  var HUMAN_TEXT = '#a74621', SIM_TEXT = '#176d82';
 
   /* --- responsive sizing: canvases fill their column and keep an aspect --- */
   function fit(cv) {
     var aspect = parseFloat(cv.dataset.aspect) || 1.5;
+    var minHeight = parseFloat(cv.dataset.minHeight) || 0;
     var parent = cv.parentElement;
-    var w = Math.max(200, Math.round(parent.clientWidth));
-    var h = Math.round(w / aspect);
-    cv.width = w * DPR; cv.height = h * DPR;
+    var w = Math.max(1, Math.round(parent.clientWidth));
+    var h = Math.max(minHeight, Math.round(w / aspect));
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
     cv.style.width = '100%'; cv.style.height = h + 'px';
     var ctx = cv.getContext('2d');
-    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     return { ctx: ctx, w: w, h: h };
   }
   function responsive(cv, onResize) {
     var s = fit(cv);
     var timer;
-    window.addEventListener('resize', function () {
+    var refit = function () {
       clearTimeout(timer);
       timer = setTimeout(function () {
         var next = fit(cv);
         s.ctx = next.ctx; s.w = next.w; s.h = next.h;
         if (onResize) onResize(s);
-      }, 150);
-    });
+      }, 100);
+    };
+    window.addEventListener('resize', refit);
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(refit).observe(cv.parentElement);
+    }
     return s;
+  }
+  function viewportActivity(cv, restart) {
+    var state = { active: true };
+    if (!REDUCED && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        var visible = entries[0].isIntersecting;
+        if (visible && !state.active) {
+          state.active = true;
+          restart();
+        } else if (!visible) {
+          state.active = false;
+        }
+      }, { rootMargin: '200px 0px' }).observe(cv);
+    }
+    return state;
   }
 
   /* ======================================================= hero globe === */
@@ -121,7 +142,7 @@
     var revealNoise = new Float32Array(PTS.length);
     for (var rn = 0; rn < revealNoise.length; rn++) revealNoise[rn] = Math.random();
 
-    var g = responsive(globeEl);
+    var g = responsive(globeEl, function () { globeFrame(performance.now(), true); });
     var events = [], t0 = performance.now(), nextAt = 900;
     var RATE = 0.18;                    // rad/s, a full turn about every 35s
     var skew = 300 * RAD;               // open over South America
@@ -200,7 +221,7 @@
       }
     }
 
-    function globeFrame(now) {
+    function globeFrame(now, once) {
       var G = geom(), ctx = g.ctx, R = G.R, cx = G.cx, cy = G.cy;
       var t = (now - t0) / 1000;
       var lam0 = REDUCED ? 18 * RAD : t * RATE + skew;
@@ -258,6 +279,8 @@
       }
       events = events.filter(function (e) { return now - e.born < 4200; });
 
+      ctx.save();
+      ctx.beginPath(); ctx.arc(cx, cy, R, 0, TAU); ctx.clip();
       events.forEach(function (e) {
         var age = (now - e.born) / 1000;
         var v = view(unit(e.lon, e.lat), lam0);
@@ -279,56 +302,68 @@
           ctx.beginPath(); ctx.arc(x, y, dot * 2 + pr * R * 0.36, 0, TAU); ctx.stroke();
         }
       });
+      ctx.restore();
 
-      requestAnimationFrame(globeFrame);
+      if (!REDUCED && !once && globeActivity.active) requestAnimationFrame(globeFrame);
     }
-    requestAnimationFrame(globeFrame);
+    var globeActivity = viewportActivity(globeEl, function () { requestAnimationFrame(globeFrame); });
+    if (REDUCED) globeFrame(performance.now(), true);
+    else requestAnimationFrame(globeFrame);
   }
 
   /* ======================================================== turn bloom === */
   var bloomEl = document.querySelector('[data-bloom]');
   if (bloomEl) {
-    var b = responsive(bloomEl);
+    var b;
     var bt0 = performance.now();
-    (function bloom(now) {
+    function bloomFrame(now, once) {
       var ctx = b.ctx, w = b.w, h = b.h;
       var t = REDUCED ? 6 : ((now - bt0) / 1000) % 10;
-      var cx = 74, cy = h / 2, step = (w - 150) / 6;
+      var cx = 64, cy = Math.max(58, Math.min(h * 0.43, h - 78));
+      var step = Math.max(8, (w - cx - 96) / 6);
+      var realEnd = Math.max(28, cy - 30), simEnd = h - 26;
+      var realStep = (cy - realEnd) / 6, simStep = (simEnd - cy) / 6;
       ctx.clearRect(0, 0, w, h);
-      ctx.font = '600 10px ' + SANS;
+      ctx.font = '600 12px ' + SANS;
       ctx.fillStyle = 'rgba(92,100,116,0.95)';
+      ctx.fillText('SAME OPENING TURN', 14, 20);
       ctx.beginPath(); ctx.arc(cx, cy, 6, 0, TAU); ctx.fill();
-      ctx.fillText('SAME OPENING TURN', cx - 24, cy + 30);
       var turns = Math.min(6, Math.floor(t / 0.8));
       for (var k = 1; k <= turns; k++) {
         var x = cx + k * step, px = cx + (k - 1) * step;
+        var realY = cy - k * realStep, prevRealY = cy - (k - 1) * realStep;
+        var simY = cy + k * simStep, prevSimY = cy + (k - 1) * simStep;
         ctx.lineWidth = 2.4;
         ctx.strokeStyle = 'rgba(226,103,60,0.8)';
-        ctx.beginPath(); ctx.moveTo(px, cy - (k - 1) * 4); ctx.lineTo(x, cy - k * 4); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(px, prevRealY); ctx.lineTo(x, realY); ctx.stroke();
         ctx.strokeStyle = 'rgba(46,155,184,0.8)';
-        ctx.beginPath(); ctx.moveTo(px, cy + (k - 1) * 11); ctx.lineTo(x, cy + k * 11); ctx.stroke();
-        ctx.fillStyle = HUMAN; ctx.beginPath(); ctx.arc(x, cy - k * 4, 4.5, 0, TAU); ctx.fill();
-        ctx.fillStyle = SIM; ctx.beginPath(); ctx.arc(x, cy + k * 11, 4.5, 0, TAU); ctx.fill();
+        ctx.beginPath(); ctx.moveTo(px, prevSimY); ctx.lineTo(x, simY); ctx.stroke();
+        ctx.fillStyle = HUMAN; ctx.beginPath(); ctx.arc(x, realY, 4.5, 0, TAU); ctx.fill();
+        ctx.fillStyle = SIM; ctx.beginPath(); ctx.arc(x, simY, 4.5, 0, TAU); ctx.fill();
       }
       if (turns >= 1) {
         var lx = cx + turns * step + 12;
-        ctx.fillStyle = HUMAN; ctx.fillText('REAL', lx, cy - turns * 4 + 4);
-        ctx.fillStyle = SIM; ctx.fillText('SIMULATED', lx, cy + turns * 11 + 4);
+        ctx.fillStyle = HUMAN_TEXT; ctx.fillText('REAL', lx, cy - turns * realStep + 4);
+        ctx.fillStyle = SIM_TEXT; ctx.fillText('SIMULATED', lx, cy + turns * simStep + 4);
       }
-      requestAnimationFrame(bloom);
-    })(performance.now());
+      if (!REDUCED && !once && bloomActivity.active) requestAnimationFrame(bloomFrame);
+    }
+    b = responsive(bloomEl, function () { bloomFrame(performance.now(), true); });
+    var bloomActivity = viewportActivity(bloomEl, function () { requestAnimationFrame(bloomFrame); });
+    if (REDUCED) bloomFrame(performance.now(), true);
+    else requestAnimationFrame(bloomFrame);
   }
 
   /* ===================================================== sampling swarm === */
   var swarmEl = document.querySelector('[data-swarm]');
   if (swarmEl) {
-    var s = responsive(swarmEl);
+    var s;
     var N = 520, pop = [];
     for (var pi = 0; pi < N; pi++) {
       pop.push({ x: Math.random(), y: Math.random(), r: 1 + Math.random() * 1.8, sel: 0 });
     }
     var st0 = performance.now(), sNext = 0;
-    (function swarm(now) {
+    function swarmFrame(now, once) {
       var ctx = s.ctx, w = s.w, h = s.h;
       ctx.clearRect(0, 0, w, h);
       if (!REDUCED && now - st0 > sNext) {
@@ -339,8 +374,13 @@
         sNext = 1;
         for (var k2 = 0; k2 < 26; k2++) pop[(Math.random() * N) | 0].sel = now;
       }
+      ctx.font = '600 12px ' + SANS;
+      var labelA = 'THE TARGET POPULATION', labelB = 'WHAT THE SIMULATOR COVERS';
+      var stacked = 26 + ctx.measureText(labelA).width + 26 + ctx.measureText(labelB).width > w - 16;
+      var legendTop = stacked ? h - 34 : h - 18;
+      var dotsBottom = legendTop - 10;
       pop.forEach(function (p) {
-        var x = 26 + p.x * (w - 52), y = 20 + p.y * (h - 56);
+        var x = 26 + p.x * (w - 52), y = 18 + p.y * Math.max(12, dotsBottom - 18);
         if (p.sel) {
           var a = REDUCED ? 1 : Math.max(0, 1 - (now - p.sel) / 2400);
           ctx.fillStyle = 'rgba(46,155,184,' + (0.4 + a * 0.55).toFixed(3) + ')';
@@ -350,23 +390,33 @@
           ctx.beginPath(); ctx.arc(x, y, p.r, 0, TAU); ctx.fill();
         }
       });
-      ctx.font = '600 11px ' + SANS;
-      ctx.fillStyle = HUMAN; ctx.fillText('THE REAL POPULATION', 26, h - 12);
-      ctx.fillStyle = SIM; ctx.fillText('WHAT THE SIMULATOR COVERS', 200, h - 12);
-      requestAnimationFrame(swarm);
-    })(performance.now());
+      ctx.fillStyle = HUMAN_TEXT; ctx.fillText(labelA, 26, stacked ? h - 22 : h - 8);
+      ctx.fillStyle = SIM_TEXT;
+      ctx.fillText(labelB, stacked ? 26 : w - 26 - ctx.measureText(labelB).width, h - 8);
+      if (!REDUCED && !once && swarmActivity.active) requestAnimationFrame(swarmFrame);
+    }
+    s = responsive(swarmEl, function () { swarmFrame(performance.now(), true); });
+    var swarmActivity = viewportActivity(swarmEl, function () { requestAnimationFrame(swarmFrame); });
+    if (REDUCED) swarmFrame(performance.now(), true);
+    else requestAnimationFrame(swarmFrame);
   }
 
   /* ========================================================== reveals === */
+  var revealEls = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
+    revealEls.forEach(function (el) { el.classList.add('reveal-pending'); });
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+        if (e.isIntersecting) {
+          e.target.classList.remove('reveal-pending');
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
       });
     }, { rootMargin: '0px 0px -8% 0px' });
-    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+    revealEls.forEach(function (el) { io.observe(el); });
   } else {
-    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-visible'); });
+    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
   /* ============================================================== nav === */
