@@ -1045,7 +1045,7 @@ section {
 
 .speaker-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  grid-template-columns: 1fr;
   gap: 1rem;
   list-style: none;
   padding: 0;
@@ -1091,6 +1091,7 @@ section {
 }
 
 .speaker-focus {
+  max-width: 58rem;
   margin-top: 0.55rem;
   color: var(--text-muted);
   font-size: var(--step--1);
