@@ -487,6 +487,15 @@ section {
   color: #fff;
 }
 
+.btn-closed,
+.btn-closed:hover {
+  background: #737986;
+  border-color: #737986;
+  color: #fff;
+  cursor: default;
+  transform: none;
+}
+
 .btn-ghost {
   border-color: rgba(255, 255, 255, 0.28);
   color: var(--text-on-ink);
@@ -498,8 +507,15 @@ section {
 }
 
 .btn[aria-disabled="true"] {
-  opacity: 0.55;
+  opacity: 0.72;
   pointer-events: none;
+}
+
+.closed-note {
+  max-width: var(--measure);
+  margin: 0.85rem 0 0;
+  color: var(--text-muted);
+  font-size: var(--step--1);
 }
 
 /* ------------------------------------------------------------ key dates */
