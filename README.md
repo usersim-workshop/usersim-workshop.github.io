@@ -2,7 +2,7 @@
 
 Website for **Grounded User Simulation for Model Evaluation and Training:
 Diversity, Fidelity, and Validity**, a workshop at NeurIPS 2026 in Paris,
-on December 12 or 13, 2026 (exact day to be confirmed).
+on December 12, 2026.
 
 Live at <https://usersim-workshop.github.io>.
 
