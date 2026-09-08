@@ -23,7 +23,7 @@ const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" vi
 <circle cx="${cx}" cy="${cy}" r="${R}" fill="url(#body)"/>
 <circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="#2e9bb8" stroke-opacity="0.3"/>
 ${dots}${marks}
-<text x="80" y="150" fill="#7fcbdc" font-size="20" font-weight="600" letter-spacing="2.4" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">NEURIPS 2026 &#183; PARIS &#183; 12 OR 13 DECEMBER</text>
+<text x="80" y="150" fill="#7fcbdc" font-size="20" font-weight="600" letter-spacing="2.4" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">NEURIPS 2026 &#183; PARIS &#183; 12 DECEMBER</text>
 <text x="80" y="252" fill="#ffffff" font-size="74" font-weight="600" font-family="Georgia, serif">UserSim</text>
 <text x="80" y="336" fill="#ffffff" font-size="74" font-weight="600" font-family="Georgia, serif">@ NeurIPS 2026</text>
 <rect x="80" y="392" width="3" height="110" fill="#e2673c"/>
