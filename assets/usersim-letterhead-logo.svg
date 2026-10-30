@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="480" viewBox="0 0 1800 480" role="img" aria-labelledby="title desc">
+  <title id="title">UserSim workshop logo</title>
+  <desc id="desc">UserSim globe mark with the workshop name, mission, location, and date.</desc>
+  <rect width="1800" height="480" fill="#ffffff"/>
+  <image href="mark.svg" x="38" y="40" width="400" height="400"/>
+  <rect x="478" y="62" width="5" height="356" rx="2.5" fill="#e2673c"/>
+  <text x="530" y="188" fill="#0b0f1a" font-family="Georgia, 'Times New Roman', serif" font-size="112" font-weight="600">UserSim</text>
+  <text x="535" y="254" fill="#2e9bb8" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" letter-spacing="3">GROUNDED USER SIMULATION FOR MODEL EVALUATION AND TRAINING</text>
+  <text x="535" y="319" fill="#141b2b" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="600">Diversity, Fidelity, and Validity</text>
+  <text x="535" y="379" fill="#667085" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="600" letter-spacing="2">PARIS  |  12 DECEMBER 2026</text>
+</svg>
