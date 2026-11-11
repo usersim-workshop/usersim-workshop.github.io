@@ -579,6 +579,18 @@ section {
   margin-top: 0.3rem;
 }
 
+.venue-note {
+  margin: 0;
+  padding: 1rem clamp(1.35rem, 2.5vw, 2rem);
+  border-top: 1px solid var(--ink-3);
+  font-size: var(--step--1);
+  color: var(--text-on-ink-muted);
+}
+
+.venue-note strong {
+  color: var(--text-on-ink);
+}
+
 /* --------------------------------------------------------------- pillars */
 
 .pillars {
